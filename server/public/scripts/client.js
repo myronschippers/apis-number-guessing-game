@@ -81,13 +81,27 @@ function render(history) {
   $('.js-total-guesses').text(`Total Guesses: ${countGuesses(history)}`);
 
   const $listElement = $('.js-history');
+  let hasCorrectAnswer = false;
 
   $listElement.empty();
   for (let round of history) {
     $listElement.append(`<li>ROUND</li>`);
 
     for (let player of round.players) {
-      $listElement.append(`<li>${player.name} guessed: ${player.guess}, ${player.result}</li>`);
+      let adjustedClass = 'item';
+
+      if (player.result === 'correct') {
+        adjustedClass = 'winner';
+        hasCorrectAnswer = true;
+      }
+
+      $listElement.append(`<li class="${adjustedClass}">${player.name} guessed: ${player.guess}, ${player.result}</li>`);
     }
+  }
+
+  if (hasCorrectAnswer) {
+    $('.js-form-actions').append(`
+      <button type="button" class="js-reset">Reset</button>
+    `);
   }
 }
