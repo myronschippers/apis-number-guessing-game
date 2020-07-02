@@ -58,9 +58,23 @@ function getHistory() {
   })
   .then(function(response) {
     console.log('GET - response:', response);
+    render(response);
   })
   .catch(function(err) {
     console.log(err);
     alert('Something went terribly wrong!!!!!');
   });
+}
+
+function countGuesses(history) {
+  let count = 0;
+  for (let round of history) {
+    count = count + round.players.length;
+  }
+
+  return count;
+}
+
+function render(history) {
+  $('.js-total-guesses').text(`Total Guesses: ${countGuesses(history)}`);
 }
