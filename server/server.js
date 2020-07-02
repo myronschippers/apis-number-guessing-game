@@ -23,6 +23,9 @@ function randomNumber(min, max){
 // GET & POST Routes go here
 
 // TODO: GET for all guesses history
+app.get('/api/guesses', (req, res) => {
+  res.send(history);
+});
 
 // TODO: POST to receive my round of guesses
 app.post('/api/guesses', (req, res) => {
