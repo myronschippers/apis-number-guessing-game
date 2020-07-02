@@ -135,7 +135,7 @@ function render(history) {
 
   if (hasCorrectAnswer) {
     $('.js-form-actions').append(`
-      <button type="button" class="js-reset">Reset</button>
+      <button type="button" class="js-reset btn btn-success">Reset</button>
     `);
   } else {
     $('.js-reset').remove();
