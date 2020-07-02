@@ -118,18 +118,28 @@ function render(history) {
   let hasCorrectAnswer = false;
 
   $listElement.empty();
-  for (let round of history) {
-    $listElement.append(`<li>ROUND</li>`);
+  for (let i = 0; i < history.length; i++) {
+    const round = history[i];
+    $listElement.append(`<h4>ROUND ${i + 1}</h4>`)
+      .append(`<ul class="list-group mb-3"></ul>`);
 
     for (let player of round.players) {
       let adjustedClass = 'item';
 
       if (player.result === 'correct') {
-        adjustedClass = 'winner';
+        adjustedClass = 'list-group-item-success';
         hasCorrectAnswer = true;
       }
 
-      $listElement.append(`<li class="${adjustedClass}">${player.name} guessed: ${player.guess}, ${player.result}</li>`);
+      $listElement
+        .children()
+        .last()
+        .append(`
+          <li class="${adjustedClass} list-group-item">
+            ${player.name} guessed: ${player.guess}, 
+            <span class="font-weight-bold">${player.result}</span>
+          </li>
+        `);
     }
   }
 
