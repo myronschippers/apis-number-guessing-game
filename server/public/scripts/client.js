@@ -4,6 +4,7 @@ function handleReady() {
   console.log("jquery is loaded!")
   // TODO: listen for submit of form
   $('#jsGuessForm').on('submit', submitGuesses);
+  getHistory();
 }
 
 // TODO: handle form submit
@@ -76,6 +77,7 @@ function countGuesses(history) {
 }
 
 function render(history) {
+  $('.js-total-rounds').text(`Total Rounds: ${history.length}`);
   $('.js-total-guesses').text(`Total Guesses: ${countGuesses(history)}`);
 
   const $listElement = $('.js-history');
