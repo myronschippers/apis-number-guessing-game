@@ -13,19 +13,19 @@ function submitGuesses(event) {
   const playerGuesses = [
     {
       name: 'Myron',
-      guess: $('.js-myron-guess').val(),
+      guess: parseInt($('.js-myron-guess').val()),
     },
     {
       name: 'Ryan',
-      guess: $('.js-ryan-guess').val(),
+      guess: parseInt($('.js-ryan-guess').val()),
     },
     {
       name: 'Shelby',
-      guess: $('.js-shelby-guess').val(),
+      guess: parseInt($('.js-shelby-guess').val()),
     },
     {
       name: 'Ashleigh',
-      guess: $('.js-ashleigh-guess').val(),
+      guess: parseInt($('.js-ashleigh-guess').val()),
     }
   ];
   console.log('GUESSed:', playerGuesses);

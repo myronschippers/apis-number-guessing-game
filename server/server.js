@@ -44,6 +44,9 @@ app.post('/api/guesses', (req, res) => {
     const playerGuess = playerGuesses.players[i];
     let result = null;
 
+    // converting guesses to number integers
+    playerGuesses.players[i].guess = parseInt(playerGuesses.players[i].guess);
+
     if (playerGuess.guess === randoNumAnswer) {
       result = 'correct';
     } else if (playerGuess.guess < randoNumAnswer) {
