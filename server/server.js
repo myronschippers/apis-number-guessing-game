@@ -9,7 +9,14 @@ app.use(bodyParser.urlencoded({extended:true}))
 // Serve up static files (HTML, CSS, Client JS)
 app.use(express.static('server/public'));
 
+const minNum = 1;
+const maxNum = 25;
+let randoNumAnswer = 0;
+
 // TODO: function that generate rando number
+function randomNumber(min, max){
+	return Math.floor(Math.random() * (1 + max - min) + min);
+}
 
 // GET & POST Routes go here
 
@@ -20,5 +27,7 @@ app.use(express.static('server/public'));
 // TODO: POST to reset rando number
 
 app.listen(PORT, () => {
-  console.log ('Server is running on port', PORT)
+  randoNumAnswer = randomNumber(minNum, maxNum);
+  console.log('RANDO:', randoNumAnswer);
+  console.log ('Server is running on port', PORT);
 })
