@@ -77,4 +77,15 @@ function countGuesses(history) {
 
 function render(history) {
   $('.js-total-guesses').text(`Total Guesses: ${countGuesses(history)}`);
+
+  const $listElement = $('.js-history');
+
+  $listElement.empty();
+  for (let round of history) {
+    $listElement.append(`<li>ROUND</li>`);
+
+    for (let player of round.players) {
+      $listElement.append(`<li>${player.name} guessed: ${player.guess}, ${player.result}</li>`);
+    }
+  }
 }
