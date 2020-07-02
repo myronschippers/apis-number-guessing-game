@@ -4,7 +4,8 @@ const app = express();
 const PORT = 5000;
 
 // This must be added before GET & POST routes.
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 
 // Serve up static files (HTML, CSS, Client JS)
 app.use(express.static('server/public'));
@@ -12,6 +13,7 @@ app.use(express.static('server/public'));
 const minNum = 1;
 const maxNum = 25;
 let randoNumAnswer = 0;
+const history = [];
 
 // TODO: function that generate rando number
 function randomNumber(min, max){
@@ -23,6 +25,22 @@ function randomNumber(min, max){
 // TODO: GET for all guesses history
 
 // TODO: POST to receive my round of guesses
+app.post('/api/guesses', (req, res) => {
+  const playerGuesses = req.body;
+  // req.body structure
+  // {
+  //   players: [
+  //     {
+  //       name: 'string',
+  //       guess: Number,
+  //     }
+  //   ]
+  // }
+
+  history.push(playerGuesses);
+  console.log(history);
+  res.sendStatus(201);
+});
 
 // TODO: POST to reset rando number
 
