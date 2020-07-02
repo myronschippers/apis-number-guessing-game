@@ -40,6 +40,21 @@ app.post('/api/guesses', (req, res) => {
   //   ]
   // }
 
+  for (let i = 0; i < playerGuesses.players.length; i++) {
+    const playerGuess = playerGuesses.players[i];
+    let result = null;
+
+    if (playerGuess.guess === randoNumAnswer) {
+      result = 'correct';
+    } else if (playerGuess.guess < randoNumAnswer) {
+      result = 'low';
+    } else if (playerGuess.guess > randoNumAnswer) {
+      result = 'high';
+    }
+
+    playerGuesses.players[i].result = result;
+  }
+
   history.push(playerGuesses);
   console.log(history);
   res.sendStatus(201);
