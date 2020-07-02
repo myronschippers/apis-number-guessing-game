@@ -28,8 +28,25 @@ function submitGuesses(event) {
     }
   ];
   console.log('GUESSed:', playerGuesses);
+  postGuesses(playerGuesses);
 }
 
 // TODO: send submitted guess to server
+function postGuesses(currentGuesses) {
+  $.ajax({
+    type: "POST",
+    url: "/api/guesses",
+    data: {
+      players: currentGuesses
+    }
+  })
+  .then(function(response) {
+    console.log('response:', response);
+  })
+  .catch(function(err) {
+    console.log(err);
+    alert('Something went terribly wrong!!!!!');
+  });
+}
 
 // TODO: get all guesses history from server
