@@ -13,7 +13,7 @@ app.use(express.static('server/public'));
 const minNum = 1;
 const maxNum = 25;
 let randoNumAnswer = 0;
-const history = [];
+let history = [];
 
 // TODO: function that generate rando number
 function randomNumber(min, max){
@@ -46,6 +46,11 @@ app.post('/api/guesses', (req, res) => {
 });
 
 // TODO: POST to reset rando number
+app.post('/api/reset', (req, res) => {
+  history = [];
+  randoNumAnswer = randomNumber(minNum, maxNum);
+  res.sendStatus(201);
+});
 
 app.listen(PORT, () => {
   randoNumAnswer = randomNumber(minNum, maxNum);
