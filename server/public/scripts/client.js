@@ -41,7 +41,8 @@ function postGuesses(currentGuesses) {
     }
   })
   .then(function(response) {
-    console.log('response:', response);
+    console.log('POST - response:', response);
+    getHistory();
   })
   .catch(function(err) {
     console.log(err);
@@ -50,3 +51,16 @@ function postGuesses(currentGuesses) {
 }
 
 // TODO: get all guesses history from server
+function getHistory() {
+  $.ajax({
+    type: "GET",
+    url: "/api/guesses",
+  })
+  .then(function(response) {
+    console.log('GET - response:', response);
+  })
+  .catch(function(err) {
+    console.log(err);
+    alert('Something went terribly wrong!!!!!');
+  });
+}
