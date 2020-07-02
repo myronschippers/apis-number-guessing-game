@@ -4,7 +4,17 @@ function handleReady() {
   console.log("jquery is loaded!")
   // TODO: listen for submit of form
   $('#jsGuessForm').on('submit', submitGuesses);
+  $('.js-form-actions').on('click', '.js-reset', resetGame);
   getHistory();
+}
+
+//
+// GAME LOGIC
+// --------------------
+
+function resetGame() {
+  console.log('RESET GAME!!!');
+  postReset();
 }
 
 // TODO: handle form submit
@@ -30,6 +40,35 @@ function submitGuesses(event) {
   ];
   console.log('GUESSed:', playerGuesses);
   postGuesses(playerGuesses);
+}
+
+function countGuesses(history) {
+  let count = 0;
+  for (let round of history) {
+    count = count + round.players.length;
+  }
+
+  return count;
+}
+
+//
+// AJAX CALLS
+// --------------------
+
+function postReset() {
+  $.ajax({
+    type: "POST",
+    url: "/api/reset",
+    data: {}
+  })
+  .then(function(response) {
+    console.log('POST, reset - response:', response);
+    getHistory();
+  })
+  .catch(function(err) {
+    console.log(err);
+    alert('Something went terribly wrong!!!!!');
+  });
 }
 
 // TODO: send submitted guess to server
@@ -67,14 +106,9 @@ function getHistory() {
   });
 }
 
-function countGuesses(history) {
-  let count = 0;
-  for (let round of history) {
-    count = count + round.players.length;
-  }
-
-  return count;
-}
+//
+// DOM INTERACTIONS
+// --------------------
 
 function render(history) {
   $('.js-total-rounds').text(`Total Rounds: ${history.length}`);
@@ -103,5 +137,7 @@ function render(history) {
     $('.js-form-actions').append(`
       <button type="button" class="js-reset">Reset</button>
     `);
+  } else {
+    $('.js-reset').remove();
   }
 }
