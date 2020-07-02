@@ -14,7 +14,37 @@
     <h1>YOUR GAME HERE!</h1>
 
     <!-- TODO: NEED form for 4 players -->
+    <p>Choose a number between 1 and 25</p>
+    <form>
+      <div>
+        <label>Myron's Guess</label>
+        <input type="number" placeholder="Choose wisely" class="js-myron-guess" />
+      </div>
+
+      <div>
+        <label>Ryan's Guess</label>
+        <input type="number" placeholder="Choose wisely" class="js-ryan-guess" />
+      </div>
+
+      <div>
+        <label>Shelby's Guess</label>
+        <input type="number" placeholder="Choose wisely" class="js-shelby-guess" />
+      </div>
+
+      <div>
+        <label>Ashleigh's Guess</label>
+        <input type="number" placeholder="Choose wisely" class="js-ashleigh-guess" />
+      </div>
+
+      <button>Submit Guesses</button>
+    </form>
+    <br />
 
     <!-- TODO: display all guesses history -->
+    <div class="js-total-guesses">Total Guesses: 0</div>
+    <h3>Guess History</h3>
+    <ul class="js-history">
+      <li>Guess History</li>
+    </ul>
 </body>
 </html>
